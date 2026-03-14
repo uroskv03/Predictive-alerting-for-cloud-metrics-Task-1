@@ -97,5 +97,5 @@ I compared the performance of a model using only raw **CPU** metrics against one
 *   **Stability:** The "CPU-only" model is slightly more stable because it has fewer parameters. However, it requires a higher `CLASS_WEIGHT_INCIDENT` to occasionally boost the Incident Recall.
 *   **Consistency:** In extensive testing, the "CPU-only" model occasionally dropped below the 0.64 Recall threshold (falling to **0.61** or **0.63**). In contrast, the model with both metrics (**CPU + CPU_diff**) proved to be more consistent and never dropped below the **0.64** threshold.
 
-**Conclusion on Features:**
-In general, when comparing the results, both approaches are very similar. However, I give a slight advantage to the model with **CPU_diff** because it explicitly highlights the **rate of value change**, providing the model with a clearer signal for the beginning of a jump.
+**Conclusion:**
+In general, when comparing the results, both approaches are very similar. However, I give a slight advantage to the model with **CPU_diff** because it explicitly highlights the value change.
