@@ -127,7 +127,7 @@ For systems with larger RAM changes, RAM is better because it detects the change
 
 Lowering the threshold to **0.25** stabilized the recall at **0.82**, but due to the randomness of the data it may also be **0.79**. 
 
-The threshold can be further reduced for this example to improve the solution, but for more realistic examples it may negatively affect performance because it can lead to too many false alarms for a small gain in recall.
+The threshold can be further reduced for this example to improve the solution, but for more realistic examples it may negatively affect performance because it can lead to too many **false alarms** for a small gain in recall.
 
 
 
