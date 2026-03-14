@@ -3,13 +3,9 @@
 ## Overview
 
 The goal of this project is to predict service incidents within a future horizon (H) based on a look-back window (W) of time-series metrics. 
-
 To evaluate the model, we generate synthetic data:
-
 **CPU Utilization:** Modeled as a sine wave with added noise.
-
 **RAM Utilization:** Modeled with a linear upward trend plus noise and spikes.
-
 **Incidents:** Defined as sudden, simultaneous spikes in both metrics. In our setup, an incident is flagged if the CPU crosses a threshold within the next H steps.
 
 ## Additional metrics
