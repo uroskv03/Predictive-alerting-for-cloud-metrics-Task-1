@@ -90,16 +90,16 @@ In our current setup, the Recall is often capped at a specific value (**0.64** f
 
 ---
 
-## Comparison: CPU-only vs. CPU + CPU_diff
+## Comparison: CPU-only vs. CPU + cpu_diff
 
-I compared the performance of a model using only raw **CPU** metrics against one using both **CPU** and **CPU_diff**. While they behave similarly due to the simplicity of the data, but there are several key differences:
+I compared the performance of a model using only raw **CPU** metrics against one using both **CPU** and **cpu_diff**. While they behave similarly due to the simplicity of the data, but there are several key differences:
 
 The "CPU-only" model is slightly more stable because it has fewer parameters. However, it requires a higher `CLASS_WEIGHT_INCIDENT` to occasionally boost the Incident Recall.
 
-In extensive testing, the "CPU-only" model occasionally dropped below the 0.64 Recall threshold (falling to **0.61** or **0.63**). In contrast, the model with both metrics (**CPU + CPU_diff**) proved to be more consistent and never dropped below the **0.64** threshold.
+In extensive testing, the "CPU-only" model occasionally dropped below the 0.64 Recall threshold (falling to **0.61** or **0.63**). In contrast, the model with both metrics (**CPU + cpu_diff**) proved to be more consistent and never dropped below the **0.64** threshold.
 
 **Conclusion:**
-In general, when comparing the results, both approaches are very similar. However, I give a slight advantage to the model with **CPU_diff** because it explicitly highlights the value change.
+In general, when comparing the results, both approaches are very similar. However, I give a slight advantage to the model with **cpu_diff** because it explicitly highlights the value change.
 
 
 ## Random Forest vs. LSTM:
@@ -115,15 +115,15 @@ Adding the cpu_diff showed no visible change, but the reason could be the simpli
 
 ## Correlation: RAM and CPU Spikes
 
-We introduced **RAM** and **ram_diff** metrics to simulate a relationship where a memory error might trigger a CPU spike. 
+We introduced **ram** and **ram_diff** metrics to simulate a relationship where a memory error might trigger a CPU spike. 
 
 Every second CPU incident was triggered by a RAM spike that happened slightly before.
 
 The Incident Recall increased to **0.82**, as expected theoretically: $1 \times 0.5 + 0.64 \times 0.5 = 0.82$
 
-## Threshold Optimization: RAM vs. ram_diff
+## Threshold Optimization: ram vs. ram_diff
 
-For systems with larger RAM changes, RAM is better because it detects the change without changing the ALERT_THRESHOLD, but for smaller changes we need ram_diff by reducing the ALERT_THRESHOLD.
+For systems with larger RAM changes, ram is better because it detects the change without changing the ALERT_THRESHOLD, but for smaller changes we need ram_diff by reducing the ALERT_THRESHOLD.
 
 Lowering the threshold to **0.25** stabilized the recall at **0.82**, but due to the randomness of the data it may also be **0.79**. 
 
