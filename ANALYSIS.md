@@ -94,8 +94,32 @@ In our current setup, the Recall is often capped at a specific value (**0.64** f
 
 I compared the performance of a model using only raw **CPU** metrics against one using both **CPU** and **CPU_diff**. While they behave similarly due to the simplicity of the data, but there are several key differences:
 
-*   **Stability:** The "CPU-only" model is slightly more stable because it has fewer parameters. However, it requires a higher `CLASS_WEIGHT_INCIDENT` to occasionally boost the Incident Recall.
-*   **Consistency:** In extensive testing, the "CPU-only" model occasionally dropped below the 0.64 Recall threshold (falling to **0.61** or **0.63**). In contrast, the model with both metrics (**CPU + CPU_diff**) proved to be more consistent and never dropped below the **0.64** threshold.
+The "CPU-only" model is slightly more stable because it has fewer parameters. However, it requires a higher `CLASS_WEIGHT_INCIDENT` to occasionally boost the Incident Recall.
+
+In extensive testing, the "CPU-only" model occasionally dropped below the 0.64 Recall threshold (falling to **0.61** or **0.63**). In contrast, the model with both metrics (**CPU + CPU_diff**) proved to be more consistent and never dropped below the **0.64** threshold.
 
 **Conclusion:**
 In general, when comparing the results, both approaches are very similar. However, I give a slight advantage to the model with **CPU_diff** because it explicitly highlights the value change.
+
+
+## Random Forest vs. LSTM:
+
+Using the **Random Forest** algorithm proved to be more efficient than **LSTM** for this specific task. Several advantages were:
+
+Parameter tuning was more straightforward. Even with `CLASS_WEIGHT_INCIDENT = 1`, the model achieved a baseline Incident recall of **0.64**.
+
+Since it is not a deep-learning model, Random Forest trained faster with better stability.
+
+Adding the cpu_diff showed no visible change, but the reason could be the simplicity of the example.
+
+
+## Correlation: RAM and CPU Spikes
+
+We introduced **RAM** and **ram_diff** metrics to simulate a relationship where a memory error might trigger a CPU spike. 
+
+Every second CPU incident was triggered by a RAM spike that happened slightly before.
+
+The Incident Recall increased to **0.82**, as expected theoretically: $1 \times 0.5 + 0.64 \times 0.5 = 0.82$
+
+
+
