@@ -1,4 +1,4 @@
-# Analysis of Different CLASS_WEIGHT_INCIDENT Values
+## Analysis of Different CLASS_WEIGHT_INCIDENT Values
 
 I compared the data for this case using the LSTM model with:
 ```
@@ -11,7 +11,7 @@ W, H = 15, 5
 N_STEPS = 2000
 ```
 
-## CLASS_WEIGHT_INCIDENT = 10.0
+### CLASS_WEIGHT_INCIDENT = 10.0
 
 | Run | Class | Precision | Recall | F1-Score | Support |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -29,7 +29,7 @@ N_STEPS = 2000
 
 ---
 
-## CLASS_WEIGHT_INCIDENT = 20.0
+### CLASS_WEIGHT_INCIDENT = 20.0
 
 | Run | Class | Precision | Recall | F1-Score | Support |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -47,7 +47,7 @@ N_STEPS = 2000
 
 ---
 
-## CLASS_WEIGHT_INCIDENT = 30.0
+### CLASS_WEIGHT_INCIDENT = 30.0
 
 | Run | Class | Precision | Recall | F1-Score | Support |
 | :--- | :--- | :--- | :--- | :--- | :--- |
