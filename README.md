@@ -13,7 +13,7 @@ To evaluate the model, we generate synthetic data:
 
 ## Additional metrics
 
-In addition to raw metrics, we introduced cpu_diff. This metric serves to further emphasize the velocity of CPU change because it is the most important parameter for detecting the beginning of the jump.
+In addition to raw metrics, we introduced cpu_diff. This metric serves to further emphasize the velocity of CPU change, the most important parameter for detecting the beginning of the jump.
 
 A memory spike can cause a CPU spike, so the ram and ram_diff metrics have been added. Using ram_diff helps stabilize the input by focusing only on the sudden changes.
 
