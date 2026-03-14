@@ -2,7 +2,7 @@
 
 I compared the data for this case using the LSTM model with:
 
-`combined_data = np.column_stack((cpu, cpu_diff))`
+```combined_data = np.column_stack((cpu, cpu_diff))
 
 INCIDENT_STEP = 200
 
@@ -15,7 +15,7 @@ ALERT_THRESHOLD = 0.5
 W, H = 15, 5
 
 N_STEPS = 2000
-
+```
 
 ## CLASS_WEIGHT_INCIDENT = 10.0
 
