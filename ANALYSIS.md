@@ -80,4 +80,23 @@ N_STEPS = 2000
 
 ## Impact of Prediction Horizon (H) on Incident Recall
 
+The **Incident Recall** is directly affected by the prediction horizon (**H**). Our tests showed a clear inverse relationship between the length of the horizon and the model's performance:
 
+*   **Lower Horizon (H = 2 or 3):** Increases Recall (e.g. H = 3 -> Incident recall ~0.75 ;**H = 2** -> **Recall ~0.82**). This is expected because predicting the immediate future is significantly easier for the model.
+*   **Higher Horizon (H = 10 or 20):** Decreases Recall (e.g., **H = 10** gives **~0.47**, while **H = 20** drops to **~0.31**). It is much harder for the model to see an incident that is far away in the future if there are no early warning signs.
+
+**Note on Recall Cap:**
+In our current setup, the Recall is often capped at a specific value (**0.64** for our standard parameters). This is due to the nature of our data generator: the incident is modeled as a sudden jump without a "slow rise" or pre-warning signal. The model often only realizes an incident is happening at the exact moment it starts.
+
+---
+
+## Feature Comparison: CPU-only vs. CPU + CPU_diff
+
+I compared the performance of a model using only raw **CPU** metrics against one using both **CPU** and **CPU_diff**. While they behave similarly due to the simplicity of the synthetic data, several key differences emerged:
+
+*   **Stability:** The "CPU-only" model is slightly more stable because it has fewer parameters. However, it requires a higher `CLASS_WEIGHT_INCIDENT` to occasionally boost the Incident Recall.
+*   **Consistency:** In extensive testing, the "CPU-only" model occasionally dropped below the 0.64 Recall threshold (falling to **0.61** or **0.63**). 
+*   **Robustness:** In contrast, the model with both metrics (**CPU + CPU_diff**) proved to be more consistent and never dropped below the **0.64** threshold.
+
+**Conclusion on Features:**
+In general, when comparing the results, both approaches are very similar. However, I give a slight advantage to the model with **CPU_diff** because it explicitly highlights the **rate of value change**, providing the model with a clearer signal for the beginning of a jump.
