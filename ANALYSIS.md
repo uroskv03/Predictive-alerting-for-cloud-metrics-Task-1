@@ -90,13 +90,12 @@ In our current setup, the Recall is often capped at a specific value (**0.64** f
 
 ---
 
-## Feature Comparison: CPU-only vs. CPU + CPU_diff
+## Comparison: CPU-only vs. CPU + CPU_diff
 
-I compared the performance of a model using only raw **CPU** metrics against one using both **CPU** and **CPU_diff**. While they behave similarly due to the simplicity of the synthetic data, several key differences emerged:
+I compared the performance of a model using only raw **CPU** metrics against one using both **CPU** and **CPU_diff**. While they behave similarly due to the simplicity of the data, but there are several key differences:
 
 *   **Stability:** The "CPU-only" model is slightly more stable because it has fewer parameters. However, it requires a higher `CLASS_WEIGHT_INCIDENT` to occasionally boost the Incident Recall.
-*   **Consistency:** In extensive testing, the "CPU-only" model occasionally dropped below the 0.64 Recall threshold (falling to **0.61** or **0.63**). 
-*   **Robustness:** In contrast, the model with both metrics (**CPU + CPU_diff**) proved to be more consistent and never dropped below the **0.64** threshold.
+*   **Consistency:** In extensive testing, the "CPU-only" model occasionally dropped below the 0.64 Recall threshold (falling to **0.61** or **0.63**). In contrast, the model with both metrics (**CPU + CPU_diff**) proved to be more consistent and never dropped below the **0.64** threshold.
 
 **Conclusion on Features:**
 In general, when comparing the results, both approaches are very similar. However, I give a slight advantage to the model with **CPU_diff** because it explicitly highlights the **rate of value change**, providing the model with a clearer signal for the beginning of a jump.
