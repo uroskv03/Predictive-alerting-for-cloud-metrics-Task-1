@@ -74,5 +74,5 @@ N_STEPS = 2000
 
 ---
 
-## Conclusion
+### Conclusion
 **CLASS_WEIGHT_INCIDENT = 20.0** is the best choice. It triggers fewer false alarms than weight 30.0, but is more capable of catching incidents than weight 10.0.
