@@ -121,5 +121,13 @@ Every second CPU incident was triggered by a RAM spike that happened slightly be
 
 The Incident Recall increased to **0.82**, as expected theoretically: $1 \times 0.5 + 0.64 \times 0.5 = 0.82$
 
+## Threshold Optimization: RAM vs. ram_diff
+
+For systems with larger RAM changes, RAM is better because it detects the change without changing the ALERT_THRESHOLD, but for smaller changes we need ram_diff by reducing the ALERT_THRESHOLD.
+
+Lowering the threshold to **0.25** stabilized the recall at **0.82**, but due to the randomness of the data it may also be **0.79**. 
+
+The threshold can be further reduced for this example to improve the solution, but for more realistic examples it may negatively affect performance because it can lead to too many false alarms for a small gain in recall.
+
 
 
