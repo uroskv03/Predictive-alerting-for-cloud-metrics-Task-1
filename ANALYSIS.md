@@ -130,4 +130,13 @@ Lowering the threshold to **0.25** stabilized the recall at **0.82**, but due to
 The threshold can be further reduced for this example to improve the solution, but for more realistic examples it may negatively affect performance because it can lead to too many **false alarms** for a small gain in recall.
 
 
+## Model Scalability (N_STEPS)
+
+To confirm the scalability of the model, we increased the dataset size 10 times (to **N_STEPS = 20,000**).
+
+Similar results were obtained on the larger dataset, confirming that the model is stable.
+
+The case of an occasional drop from **0.82** is more frequent, but it is generally smaller (at **0.81** or **0.8**, rarely **0.79**). It also sometimes happens that the value exceeds **0.83**.
+
+This consistency across 20,000 steps demonstrates that both modeling approaches are highly reliable for this predictive alerting task. While both architectures achieve similar stability, the Random Forest model provides a more time-efficient alternative.
 
